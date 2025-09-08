@@ -21,6 +21,10 @@ Route::middleware(ValidUser::class)->group(function () {
     Route::get('/expenses', [ExpensesController::class, 'index'])->name('expenses.index');
     Route::post('addExpenses', [ExpensesController::class, 'addExpenses'])->name('addExpenses');
     Route::delete('/expenses/{id}', [ExpensesController::class, 'destroy'])->name('expenses.destroy');
+
+
+    Route::get('/expense/{id}/edit', [ExpensesController::class, 'edit'])->name('expense.edit');
+    Route::put('/expense/{id}', [ExpensesController::class, 'update'])->name('expense.update');
 });
 
 

@@ -44,4 +44,25 @@ class ExpensesController extends Controller
 
         return redirect()->route('expenses.index')->with('success', 'Expense deleted successfully!');
     }
+
+
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'date' => 'required|date',
+            'title' => 'required|string|max:255',
+            'amount' => 'required|numeric',
+        ]);
+
+
+        $expense = Expense::findOrFail($id);
+        $expense->update([
+            'date' => $request->date,
+            'title' => $request->title,
+            'amount' => $request->amount,
+        ]);
+
+        return redirect()->route('expenses.index')->with('success', 'Expense updated successfully!');
+    }
 }

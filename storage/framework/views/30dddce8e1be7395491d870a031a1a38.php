@@ -46,8 +46,12 @@
                                     <td><?php echo e($expense->notes); ?></td>
                                     <td class="flex-nowrap d-flex">
                                         <!--  -->
-                                        <a href=""
-                                            class="btn btn-success btn-sm me-2">Edit</a>
+                                        <!-- <a href=""
+                                            class="btn btn-success btn-sm me-2">Edit</a> -->
+
+                                        <button type="button" class="btn btn-success btn-sm me-2" data-bs-toggle="modal" data-bs-target="#editExpenses<?php echo e($expense->id); ?>">
+                                            Edit
+                                        </button>
 
                                         <!--  -->
                                         <form action="<?php echo e(route('expenses.destroy', $expense->id)); ?>"
@@ -63,6 +67,7 @@
                                         </form>
                                     </td>
                                 </tr>
+                                <?php echo $__env->make('expenses.edit', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                             </tbody>
@@ -83,6 +88,7 @@
 
 
 <?php echo $__env->make('expenses.add-expenses', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+
 
 
 <?php $__env->stopSection(); ?>

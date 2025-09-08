@@ -48,8 +48,12 @@
                                     <td>{{ $expense->notes }}</td>
                                     <td class="flex-nowrap d-flex">
                                         <!-- {{-- Edit --}} -->
-                                        <a href=""
-                                            class="btn btn-success btn-sm me-2">Edit</a>
+                                        <!-- <a href=""
+                                            class="btn btn-success btn-sm me-2">Edit</a> -->
+
+                                        <button type="button" class="btn btn-success btn-sm me-2" data-bs-toggle="modal" data-bs-target="#editExpenses{{ $expense->id }}">
+                                            Edit
+                                        </button>
 
                                         <!-- {{-- Delete --}} -->
                                         <form action="{{ route('expenses.destroy', $expense->id) }}"
@@ -65,6 +69,7 @@
                                         </form>
                                     </td>
                                 </tr>
+                                @include('expenses.edit')
                                 @endforeach
 
                             </tbody>
@@ -85,6 +90,7 @@
 
 
 @include('expenses.add-expenses')
+
 
 
 @endsection
