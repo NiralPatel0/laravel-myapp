@@ -12,7 +12,8 @@ class ExpensesController extends Controller
     public function index()
     {
         $expenses = Expense::where('user_id', Auth::id())->get();
-        return view('expenses.index', compact('expenses'));
+        $totalAmount = $expenses->sum('amount'); // Total calculate
+        return view('expenses.index', compact('expenses', 'totalAmount'));
     }
 
     // Add new expense

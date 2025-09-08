@@ -72,6 +72,10 @@
 
                             </tbody>
                         </table>
+                        <div class="p-2 text-center fw-bolder">
+                            Total Of This Month :
+                            <span class="text-success fs-5"><?php echo e($totalAmount); ?></span>
+                        </div>
                     </div>
                     <?php else: ?>
                     <div class="p-2 text-center">
