@@ -82,8 +82,6 @@
                         <p class="mb-0">Data Not Found</p>
                     </div>
                     <?php endif; ?>
-
-
                 </div>
             </div>
         </div>

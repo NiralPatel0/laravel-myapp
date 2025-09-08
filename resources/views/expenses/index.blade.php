@@ -84,8 +84,6 @@
                         <p class="mb-0">Data Not Found</p>
                     </div>
                     @endif
-
-
                 </div>
             </div>
         </div>
