@@ -26,6 +26,10 @@ class ExpensesController extends Controller
             $expenses->where('category', $request->category);
         }
 
+        if ($request->payment) {
+            $expenses->where('payment', $request->payment);
+        }
+
         // Get all records after filters
         $expenses = $expenses->get();
 

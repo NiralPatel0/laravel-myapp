@@ -16,20 +16,28 @@
         <div class="col-12">
             <div class="card mt-4 shadow">
                 <div class="card-body px-0">
-                    <?php if($expenses && $expenses->count() > 0): ?>
                     <div class="p-2">
                         <form action="<?php echo e(route('expenses.index')); ?>" method="GET" class="mb-3 d-flex align-items-center gap-2">
-                            <div class="row w-100 align-items-center">
-                                <div class="col-lg-4">
+                            <div class="row w-100 align-items-end">
+                                <div class="col-lg-3">
+                                    <label for="">From:</label>
                                     <input type="date" name="from_date" id="from_date" class="form-control"
                                         value="<?php echo e(request('from_date')); ?>">
                                 </div>
-                                <div class="col-1 text-center">
+                                <div class="col-lg-3">
                                     <label for="to_date">To:</label>
-                                </div>
-                                <div class="col-lg-4">
                                     <input type="date" name="to_date" id="to_date" class="form-control"
                                         value="<?php echo e(request('to_date')); ?>">
+                                </div>
+
+                                <div class="col-lg-3">
+                                    <label for="">Payment Method:</label>
+                                    <select name="payment" class="form-control">
+                                        <option value="">-- Select Payment Method --</option>
+                                        <option value="Cash" <?php echo e(request('payment') == 'Cash' ? 'selected' : ''); ?>>Cash</option>
+                                        <option value="Online" <?php echo e(request('payment') == 'Online' ? 'selected' : ''); ?>>Online</option>
+                                        <option value="Other" <?php echo e(request('payment') == 'Other' ? 'selected' : ''); ?>>Other</option>
+                                    </select>
                                 </div>
                                 <div class="col-lg-3 d-flex gap-2">
                                     <button type="submit" class="btn btn-success">Filter Date</button>
@@ -38,6 +46,7 @@
                             </div>
                         </form>
                     </div>
+                    <?php if($expenses && $expenses->count() > 0): ?>
 
                     <hr>
 
