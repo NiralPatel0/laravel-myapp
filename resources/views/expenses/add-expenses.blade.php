@@ -10,27 +10,47 @@
                     @csrf
                     <div class="mb-3">
                         <label for="date" class="form-label">Date </label>
-                        <input type="date" class="form-control" id="date" name="date">
+                        <input type="date" class="form-control" id="date" name="date" value="{{ old('date') }}">
+                        @error('date')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
 
                     <div class="mb-3">
                         <label for="title" class="form-label">Title</label>
-                        <input type="text" class="form-control" name="title" id="title">
+                        <input type="text" class="form-control" name="title" id="title" value="{{ old('title') }}">
+                        @error('title')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
 
                     <div class="mb-3">
                         <label for="category" class="form-label">Category</label>
-                        <input type="text" class="form-control" name="category" id="category">
+                        <input type="text" class="form-control" name="category" id="category" value="{{ old('category') }}">
+                        @error('category')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
 
                     <div class="mb-3">
                         <label for="" class="form-label">Amount</label>
-                        <input type="text" class="form-control" name="amount" id="">
+                        <input type="text" class="form-control" name="amount" id="" value="{{ old('amount') }}">
+                        @error('amount')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
 
-                    <div class="mb-3">
+                    <!-- <div class="mb-3">
                         <label for="" class="form-label">Payment Method</label>
                         <input type="text" class="form-control" name="payment" id="">
+                    </div> -->
+                    <div class="mb-3">
+                        <label for="payment" class="form-label">Payment Method</label>
+                        <select name="payment" id="payment" class="form-select" required>
+                            <option value="Cash" {{ (isset($expense) && $expense->payment == 'Cash') ? 'selected' : '' }}>Cash</option>
+                            <option value="Online" {{ (isset($expense) && $expense->payment == 'Online') ? 'selected' : '' }}>Online</option>
+                            <option value="Other" {{ (isset($expense) && $expense->payment == 'Other') ? 'selected' : '' }}>Other</option>
+                        </select>
                     </div>
 
                     <div class="mb-3">
@@ -42,9 +62,9 @@
                 </form>
 
                 @if(session('success'))
-                    <script>        
-                        alert("{{ session('success') }}");
-                    </script>
+                <script>
+                    alert("{{ session('success') }}");
+                </script>
                 @endif
             </div>
             <div class="modal-footer">

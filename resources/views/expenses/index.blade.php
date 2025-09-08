@@ -75,7 +75,7 @@
                             </tbody>
                         </table>
                         <div class="p-2 text-center fw-bolder">
-                            Total Of This Month :
+                            Total Of Expenses :
                             <span class="text-success fs-5">{{ $totalAmount }}</span>
                         </div>
                     </div>

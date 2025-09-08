@@ -24,7 +24,7 @@ class ExpensesController extends Controller
             'title' => 'required',
             'category' => 'required',
             'amount' => 'required|numeric',
-            'payment' => 'required',
+            'payment' => 'required|in:Cash,Online,Other',
             'notes' => 'nullable|string',
         ]);
 
