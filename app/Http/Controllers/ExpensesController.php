@@ -9,10 +9,29 @@ use Illuminate\Support\Facades\Auth;
 class ExpensesController extends Controller
 {
     // Show all expenses of logged-in user
-    public function index()
+    public function index(Request $request)
     {
-        $expenses = Expense::where('user_id', Auth::id())->get();
-        $totalAmount = $expenses->sum('amount'); // Total calculate
+        // Start query for only logged-in user
+        $expenses = Expense::where('user_id', Auth::id());
+
+        if ($request->from_date && $request->to_date) {
+            $expenses->whereBetween('date', [$request->from_date, $request->to_date]);
+        } elseif ($request->from_date) {
+            $expenses->whereDate('date', '>=', $request->from_date);
+        } elseif ($request->to_date) {
+            $expenses->whereDate('date', '<=', $request->to_date);
+        }
+
+        if ($request->category) {
+            $expenses->where('category', $request->category);
+        }
+
+        // Get all records after filters
+        $expenses = $expenses->get();
+
+        // Calculate total of filtered expenses
+        $totalAmount = $expenses->sum('amount');
+
         return view('expenses.index', compact('expenses', 'totalAmount'));
     }
 

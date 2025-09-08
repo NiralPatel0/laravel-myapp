@@ -17,8 +17,31 @@
             <div class="card mt-4 shadow">
                 <div class="card-body px-0">
                     <?php if($expenses && $expenses->count() > 0): ?>
-                    <div class="table-responsive">
+                    <div class="p-2">
+                        <form action="<?php echo e(route('expenses.index')); ?>" method="GET" class="mb-3 d-flex align-items-center gap-2">
+                            <div class="row w-100 align-items-center">
+                                <div class="col-lg-4">
+                                    <input type="date" name="from_date" id="from_date" class="form-control"
+                                        value="<?php echo e(request('from_date')); ?>">
+                                </div>
+                                <div class="col-1 text-center">
+                                    <label for="to_date">To:</label>
+                                </div>
+                                <div class="col-lg-4">
+                                    <input type="date" name="to_date" id="to_date" class="form-control"
+                                        value="<?php echo e(request('to_date')); ?>">
+                                </div>
+                                <div class="col-lg-3 d-flex gap-2">
+                                    <button type="submit" class="btn btn-success">Filter Date</button>
+                                    <a href="<?php echo e(route('expenses.index')); ?>" class="btn btn-secondary">Reset</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
 
+                    <hr>
+
+                    <div class="table-responsive">
                         <table class="table tab  mb-0">
                             <thead>
                                 <tr>
